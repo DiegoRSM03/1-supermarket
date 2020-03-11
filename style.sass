@@ -1,0 +1,128 @@
+$AZUL: #02155C
+$CELESTE: #3562E3
+$BLANCO: #F3F3F3
+$GRIS: #888
+$NEGRO: #000
+
+body, *
+    margin: 0
+    padding: 0
+    box-sizing: border-box
+
+    font-family: Arial
+
+body
+    background-color: $AZUL
+
+h1
+    color: #F3F3F3
+    text-transform: uppercase
+    text-align: center
+    padding: 3.5rem 0 1rem
+
+.supermarket-products
+    width: 100%
+    height: 25rem
+
+    table
+        border: 2px solid $NEGRO
+        width: 100%
+        overflow-y: scroll
+
+        thead,tbody
+            width: 100%
+
+        tr
+            th,td
+                padding: .3rem .7rem
+                border-left: 1px solid #000000
+
+            th
+                background-color: #3562E3
+
+            td
+                color: #DEDEDE
+
+.form_full
+    width: 70vw
+    display: flex
+    align-items: center
+    justify-content: space-between
+
+    background-color: rgba(255, 255, 255, .3)
+    margin: 5rem auto
+    overflow: show
+
+    .form_lore
+        width: 40%
+
+        h2
+            color: $BLANCO
+            padding: 5rem 1rem
+
+    form
+        display: flex
+        flex-direction: column
+        align-items: center
+        justify-content: center
+        
+        width: 50%
+        margin: -2rem auto
+        padding: 5rem
+    
+        background-color: #F3F3F3
+
+        input[type="text"]
+            color: #000000
+            margin: 1rem
+            padding: .7rem
+            width: 100%
+
+        fieldset
+            display: flex
+            flex-direction: column
+            align-items: center
+            justify-content: center
+
+            width: 100%
+            margin-top: 1rem
+            padding: 1rem
+
+            legend
+                color: $GRIS
+
+            div
+                input[type="radio"]
+                    margin: .2rem 0
+
+                input[type="radio"]:checked
+                    transform: scale(1.8)
+                    margin-bottom: .5rem
+
+                label
+                    color: $GRIS
+                    padding: 0 .5rem
+
+            details
+                width: 100%
+                margin-top: .5rem
+                cursor: pointer
+                cursor: hand
+
+                summary
+                    color: $GRIS
+                    
+                div
+                    margin-left: 1rem
+                
+        button[type="submit"]
+            font-size: 1rem
+            color: $BLANCO
+            background-color: $AZUL
+            border: none
+            cursor: pointer
+            cursor: hand
+
+            margin-top: 2rem
+            padding: .7rem 2rem
+            
