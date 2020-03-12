@@ -31,49 +31,61 @@
             </thead>
             <tbody>
                 <?php
-                $category = $_GET['category'];
-                $provider = $_GET['provider'];
-                $orderBy = $_GET['orderBy'];
+                $category = isset($_GET['category']) ? $_GET['category'] : '';
+                $provider = isset($_GET['provider']) ? $_GET['provider'] : '';
+                $orderBy = isset($_GET['orderBy']) ? $_GET['orderBy'] : '';
 
-                    try {
-                        require('./connect.php');
-                        
-                        $dbh = new PDO($dbs, $dbUser, $dbPsswd);
-                        $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
-                        $dbh->exec('SET CHARACTER SET utf8');
+                try {
+                    require('./connect.php');
                     
-                        $query = 
-                            'SELECT * FROM PRODUCTS 
-                            WHERE
-                                category=:queryCategory
-                                AND
-                                provider=:queryProvider 
-                            ORDER BY :queryOrderBy';
-                        $result = $dbh->prepare($query);
+                    $dbh = new PDO($dbs, $dbUser, $dbPsswd);
+                    $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
+                    $dbh->exec('SET CHARACTER SET utf8');
+                
+                    $query = 'SELECT * FROM PRODUCTS';
+                    if ($category != '' && $provider != '') {
+                        $query .= ' WHERE category=:queryCategory AND provider =:queryProvider';
+                    }else if ($category == '' && $provider != '') {
+                        $query .= ' WHERE provider=:queryProvider';
+                    }else if ($category != '' && $provider == '') {
+                        $query .= ' WHERE category=:queryCategory';
+                    }
+                    if ($orderBy != '') {
+                        $query .= ' ORDER BY :queryOrderBy';
+                    }
 
+                    $result = $dbh->prepare($query);
+                    if ($category != '' && $provider != '') {
                         $result->bindValue(':queryCategory', $category);
                         $result->bindValue(':queryProvider', $provider);
-                        $result->bindValue(':queryOrderBy', $orderBy);
-                        $result->execute();
-                        
-                        while ($product = $result->fetch(PDO::FETCH_ASSOC)) {
-                            echo '<tr>';
-                                echo "<td>$product[id]</td>";
-                                echo "<td>$product[name]</td>";
-                                echo "<td>$product[provider]</td>";
-                                echo "<td>$product[category]</td>";
-                                echo "<td>$product[unit_quantity]</td>";
-                                echo "<td>$product[unit_price]</td>";
-                                echo "<td>$product[unit_exist]</td>";
-                                echo "<td>$product[unit_demand]</td>";
-                            echo '</tr>';
-                        }
-                    
-                    } catch (Exception $e) {
-                        echo 'ERROR: ' . $e->getMessage();
-                    } finally {
-                        $dbh = null;
+                    }else if ($category == '' && $provider != '') {
+                        $result->bindValue(':queryProvider', $provider);
+                    }else if ($category != '' && $provider == '') {
+                        $result->bindValue(':queryCategory', $category);
                     }
+                    if ($orderBy != '') {
+                        $result->bindValue(':queryOrderBy', $orderBy);
+                    }
+                    $result->execute();
+                    
+                    while ($product = $result->fetch(PDO::FETCH_ASSOC)) {
+                        echo '<tr>';
+                            echo "<td>$product[id]</td>";
+                            echo "<td>$product[name]</td>";
+                            echo "<td>$product[provider]</td>";
+                            echo "<td>$product[category]</td>";
+                            echo "<td>$product[unit_quantity]</td>";
+                            echo "<td>$product[unit_price]</td>";
+                            echo "<td>$product[unit_exist]</td>";
+                            echo "<td>$product[unit_demand]</td>";
+                        echo '</tr>';
+                    }
+                
+                } catch (Exception $e) {
+                    echo 'ERROR: ' . $e->getMessage();
+                } finally {
+                    $dbh = null;
+                }
                 ?>
             </tbody>
         </table>

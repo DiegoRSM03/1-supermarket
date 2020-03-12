@@ -1,3 +1,4 @@
+$VIOLETA: #BD67AA
 $AZUL: #02155C
 $CELESTE: #3562E3
 $BLANCO: #F3F3F3
@@ -14,11 +15,14 @@ body, *
 body
     background-color: $AZUL
 
+h1, h2
+    cursor: default
+    text-align: center
 h1
     color: #F3F3F3
     text-transform: uppercase
-    text-align: center
-    padding: 3.5rem 0 1rem
+    padding: 2rem 0 1rem
+    cursor: default
 
 .supermarket-products
     width: 100%
@@ -50,15 +54,19 @@ h1
     justify-content: space-between
 
     background-color: rgba(255, 255, 255, .3)
-    margin: 5rem auto
+    margin: 3rem auto
     overflow: show
 
     .form_lore
-        width: 40%
+        width: 50%
+        padding: 3rem
 
         h2
-            color: $BLANCO
+            color: lighten($GRIS, 20)
             padding: 5rem 1rem
+            line-height: 2rem
+            text-align: center
+            
 
     form
         display: flex
@@ -67,10 +75,10 @@ h1
         justify-content: center
         
         width: 50%
-        margin: -2rem auto
-        padding: 5rem
+        margin: -2rem 0 -2rem 3rem
+        padding: 3rem
     
-        background-color: #F3F3F3
+        background-color: $BLANCO
 
         input[type="text"]
             color: #000000
@@ -120,8 +128,13 @@ h1
             color: $BLANCO
             background-color: $AZUL
             border: none
+
+            transition: .3s ease 0s
             cursor: pointer
             cursor: hand
 
             margin-top: 2rem
             padding: .7rem 2rem
+
+            &:hover
+                background-color: $VIOLETA

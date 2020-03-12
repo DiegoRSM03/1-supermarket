@@ -62,7 +62,8 @@
             <button type="submit">Buscar</button>
         </form>
         <div class="form_lore">
-            <h2>Busque el producto deseado por su correspondiente categoria</h2>
+            <h1>Filtros</h1>
+            <h2>Busque el producto que desee filtrandolo con las distintas opciones del formulario</h2>
         </div>
     </div>
 </body>
