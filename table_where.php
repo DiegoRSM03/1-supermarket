@@ -51,9 +51,9 @@
                         $query .= ' WHERE category=:queryCategory';
                     }
                     if ($orderBy != '') {
-                        $query .= ' ORDER BY :queryOrderBy';
+                        $query .= " ORDER BY $orderBy";
                     }
-
+                    
                     $result = $dbh->prepare($query);
                     if ($category != '' && $provider != '') {
                         $result->bindValue(':queryCategory', $category);
@@ -63,9 +63,7 @@
                     }else if ($category != '' && $provider == '') {
                         $result->bindValue(':queryCategory', $category);
                     }
-                    if ($orderBy != '') {
-                        $result->bindValue(':queryOrderBy', $orderBy);
-                    }
+                    
                     $result->execute();
                     
                     while ($product = $result->fetch(PDO::FETCH_ASSOC)) {
