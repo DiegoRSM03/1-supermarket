@@ -5,16 +5,28 @@ $BLANCO: #F3F3F3
 $GRIS: #888
 $NEGRO: #000
 
-select
+
+
+h2
+	font-weight: lighter
+
+select,
+button
 	width: 100%
 	padding: .7rem
 	font-size: 1.1rem
 
-input
-	font-size: 1.1rem
+button
+	font-weight: bolder
+	letter-spacing: .2rem
 
-label
-	font-size: 1.1rem
+body
+	background-image: linear-gradient(to left, #C33764, #1D2671)
+
+table
+	th
+		color: $BLANCO
+		background-color: rgba(0, 0, 0, .5)
 
 body, *
     margin: 0
@@ -23,16 +35,12 @@ body, *
 
     font-family: Arial
 
-body
-    background-color: $AZUL
-
 h1, h2
     cursor: default
     text-align: center
 h1
     color: #F3F3F3
-    text-transform: uppercase
-    padding: 2rem 0 1rem
+    padding: 2rem 1rem
     cursor: default
 
 .supermarket-products
@@ -50,10 +58,7 @@ h1
         tr
             th,td
                 padding: .3rem .7rem
-                border-left: 1px solid #000000
-
-            th
-                background-color: #3562E3
+                border-left: 1px solid 
 
             td
                 color: #DEDEDE
@@ -70,11 +75,11 @@ h1
 
     .form_lore
         width: 50%
-        padding: 3rem
+        padding: 2.5rem
 
         h2
             color: lighten($GRIS, 20)
-            padding: 5rem 1rem
+            padding: 1rem 1rem
             line-height: 2rem
             text-align: center
             
@@ -137,3 +142,6 @@ h1
 
             &:hover
                 background-color: $VIOLETA
+
+.filter
+	text-align: right !important

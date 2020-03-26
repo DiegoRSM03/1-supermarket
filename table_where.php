@@ -14,7 +14,7 @@
         ini_set('display_startup_errors', 1);
         error_reporting(E_ALL);
     ?>
-    <h1>Conexion a DDBB con POO</h1>
+    <h1>Lista de productos</h1>
     <div class="supermarket-products">
         <table>
             <thead>

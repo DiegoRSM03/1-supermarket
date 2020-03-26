@@ -13,12 +13,12 @@
     ?>
 </head>
 <body>
-    <h1>Conexion a DDBB con POO</h1>
+    <h1>Supermercado</h1>
     <div class="form_full">
         <form action="table_where.php" method="get">
             <input type="text" name="category" placeholder="Categoria">
             <select name="provider">
-				<option value="">Seleccione un provedor</option>
+				<option value="">Provedor</option>
 				<?php
 					require('./connect.php');
 					
@@ -61,11 +61,13 @@
                 <div><input type="radio" name="orderBy" value="unit_exist"><label>Exitencias</label></div>
                 <div><input type="radio" name="orderBy" value="unit_demand"><label>Demandas</label></div>
             </fieldset>
-            <button type="submit">Buscar</button>
+            <button type="submit">BUSCAR</button>
         </form>
         <div class="form_lore">
-            <h1>Filtros</h1>
-            <h2>Busque el producto que desee filtrandolo con las distintas opciones del formulario</h2>
+            <h1 class="filter">Filtros de Búsqueda</h1>
+            <h2 class="filter">Busque el producto que desee filtrandolo 
+			con las distintas opciones disponibles del 
+			formulario</h2>
         </div>
     </div>
 </body>
