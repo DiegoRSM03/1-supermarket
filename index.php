@@ -17,42 +17,38 @@
     <div class="form_full">
         <form action="table_where.php" method="get">
             <input type="text" name="category" placeholder="Categoria">
-            <fieldset>
-                <legend>Provedor</legend>
-                <div><input type="radio" name="provider" value="Aux joyeux ecclésiastiques"><label>Aux joyeux ecclésiastiques</label></div>
-                <div><input type="radio" name="provider" value="Bigfoot Breweries"><label>Bigfoot Breweries</label></div>
-                <div><input type="radio" name="provider" value="Cooperativa de Quesos 'Las Cabras'"><label>Cooperativa de Quesos 'Las Cabras'</label></div>
-                <div><input type="radio" name="provider" value="Escargots Nouveaux"><label>Escargots Nouveaux</label></div>
-                <div><input type="radio" name="provider" value="Exotic Liquids"><label>Exotic Liquids</label></div>
-                <div><input type="radio" name="provider" value="Forêts d'érables"><label>Forêts d'érables</label></div>
-                <div><input type="radio" name="provider" value="Formaggi Fortini s.r.l."><label>Formaggi Fortini s.r.l.</label></div>
-                <div><input type="radio" name="provider" value="G'day, Mate"><label>G'day, Mate</label></div>
-                <div><input type="radio" name="provider" value="Gai pâturage"><label>Gai pâturage</label></div>
-                <div><input type="radio" name="provider" value="Grandma Kelly's Homestead"><label>Grandma Kelly's Homestead</label></div>
-                <details>
-                    <summary>Mas provedores...</summary>
-                    <div><input type="radio" name="provider" value="Heli Süßwaren GmbH & Co. KG"><label>Heli Süßwaren GmbH & Co. KG</label></div>
-                    <div><input type="radio" name="provider" value="Karkki Oy"><label>Karkki Oy</label></div>
-                    <div><input type="radio" name="provider" value="Leka Trading"><label>Leka Trading</label></div>
-                    <div><input type="radio" name="provider" value="Lyngbysild"><label>Lyngbysild</label></div>
-                    <div><input type="radio" name="provider" value="Ma Maison"><label>Ma Maison</label></div>
-                    <div><input type="radio" name="provider" value="Mayumi's"><label>Mayumi's</label></div>
-                    <div><input type="radio" name="provider" value="New England Seafood Cannery"><label>New England Seafood Cannery</label></div>
-                    <div><input type="radio" name="provider" value="New Orleans Cajun Delights"><label>New Orleans Cajun Delights</label></div>
-                    <div><input type="radio" name="provider" value="Nord-Ost-Fisch Handelsgesellschaft mbH"><label>Nord-Ost-Fisch Handelsgesellschaft mbH</label></div>
-                    <div><input type="radio" name="provider" value="Norske Meierier"><label>Norske Meierier</label></div>
-                    <div><input type="radio" name="provider" value="Pasta Buttini s.r.l."><label>Pasta Buttini s.r.l.</label></div>
-                    <div><input type="radio" name="provider" value="Pavlova, Ltd."><label>Pavlova, Ltd.</label></div>
-                    <div><input type="radio" name="provider" value="PB Knäckebröd AB"><label>PB Knäckebröd AB</label></div>
-                    <div><input type="radio" name="provider" value="Plutzer Lebensmittelgroßmärkte AG"><label>Plutzer Lebensmittelgroßmärkte AG</label></div>
-                    <div><input type="radio" name="provider" value="Refrescos Americanas LTDA"><label>Refrescos Americanas LTDA</label></div>
-                    <div><input type="radio" name="provider" value="Specialty Biscuits, Ltd."><label>Specialty Biscuits, Ltd.</label></div>
-                    <div><input type="radio" name="provider" value="Svensk Sjöföda AB"><label>Svensk Sjöföda AB</label></div>
-                    <div><input type="radio" name="provider" value="Tokyo Traders"><label>Tokyo Traders</label></div>
-                    <div><input type="radio" name="provider" value="Zaanse Snoepfabriek"><label>Zaanse Snoepfabriek</label></div>
+            <select>
+				<?php
+					require('./connect.php');
+					
+					try {
 
-                </details>
-            </fieldset>
+						$dbh = new PDO($dbs, $dbUser, $dbPsswd);
+						$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
+						$dbh->exec('SET CHARACTER SET utf8');
+						
+						$sql = 'SELECT DISTINCT provider FROM PRODUCTS ORDER BY provider ASC';
+						$result = $dbh->prepare($sql);
+						$result->execute();
+						
+						while ($provider = $result->fetch(PDO::FETCH_ASSOC)) {
+							echo '<option value="' . $provider['provider'] . '">' . $provider['provider'] .'</option>';
+						}
+
+					} catch (Exception $e) {
+
+						echo '<h1>Error al conectar con BD</h1>';
+						echo '<h3>Error: ' . $e->getMessage() . '</h3>';
+						echo '<h3>Error en linea: ' . $e->getLine() . '</h3>';
+
+					} finally {
+
+						$dbh = null;
+						
+					}
+
+				?>
+            </select>
             <fieldset>
                 <legend>Ordernar por:</legend>
                 <div><input type="radio" name="orderBy" value="ID"><label>ID</label></div>
