@@ -73,7 +73,7 @@
 								echo "<td>$product[provider]</td>";
 								echo "<td>$product[category]</td>";
 								echo "<td>$product[unit_quantity]</td>";
-								echo "<td>$product[unit_price]</td>";
+								echo "<td>$ $product[unit_price]</td>";
 								echo "<td>$product[unit_exist]</td>";
 								echo "<td>$product[unit_demand]</td>";
 							echo '</tr>';

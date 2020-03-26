@@ -17,7 +17,8 @@
     <div class="form_full">
         <form action="table_where.php" method="get">
             <input type="text" name="category" placeholder="Categoria">
-            <select>
+            <select name="provider">
+				<option value="">Seleccione un provedor</option>
 				<?php
 					require('./connect.php');
 					
@@ -54,6 +55,11 @@
                 <div><input type="radio" name="orderBy" value="ID"><label>ID</label></div>
                 <div><input type="radio" name="orderBy" value="name"><label>Nombre</label></div>
                 <div><input type="radio" name="orderBy" value="provider"><label>Provedor</label></div>
+                <div><input type="radio" name="orderBy" value="category"><label>Categoria</label></div>
+                <div><input type="radio" name="orderBy" value="unit_quantity"><label>Cantidad</label></div>
+                <div><input type="radio" name="orderBy" value="unit_price"><label>Precio Unit</label></div>
+                <div><input type="radio" name="orderBy" value="unit_exist"><label>Exitencias</label></div>
+                <div><input type="radio" name="orderBy" value="unit_demand"><label>Demandas</label></div>
             </fieldset>
             <button type="submit">Buscar</button>
         </form>
